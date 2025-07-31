@@ -1,2 +1,0 @@
-# birjobResume
-resume creation
