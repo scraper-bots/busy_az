@@ -251,7 +251,7 @@ class BusyAzFullScraper:
         
         return candidates
     
-    def save_progress(self, filename: str = 'busy_az_all_candidates.csv'):
+    def save_progress(self, filename: str = 'busy_az_candidates.csv'):
         """Save current progress to CSV"""
         if not self.scraped_candidates:
             return
@@ -372,7 +372,7 @@ async def main():
         
         print(f"\n🎉 Scraping completed successfully!")
         print(f"📊 Total candidates found: {len(candidates)}")
-        print(f"📁 Data saved to: busy_az_all_candidates.csv")
+        print(f"📁 Data saved to: busy_az_candidates.csv")
         
         # Show sample of data
         if candidates:

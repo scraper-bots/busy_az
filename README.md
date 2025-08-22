@@ -1,15 +1,16 @@
 # Busy.az Job Seeker Scraper
 
-A Python web scraper to extract candidate information from busy.az job seeker profiles.
+High-performance async web scraper to extract ALL candidate information from busy.az job seeker profiles.
 
 ## Features
 
-- 🚀 **High-performance async scraping** with aiohttp
-- 📊 **Comprehensive data extraction** from candidate profiles
+- 🚀 **Fastest async scraping** with aiohttp (15-20 candidates/minute)
+- 📊 **Comprehensive data extraction** from ALL pages
 - 📱 **Phone numbers prioritized** as first CSV column
-- 🔄 **Progress saving** - resume from interruption
-- 🛡️ **Error handling** and rate limiting
+- 🔄 **Progress auto-save** every 5 pages
+- 🛡️ **Error handling** and smart rate limiting
 - 🌐 **Full UTF-8 support** for Azerbaijani text
+- 🛑 **Graceful interruption** - Ctrl+C saves progress
 
 ## Installation
 
@@ -17,25 +18,21 @@ A Python web scraper to extract candidate information from busy.az job seeker pr
 pip install -r requirements.txt
 ```
 
-## Available Scrapers
+## Usage
 
-### 1. Basic Scraper (scraper.py)
-Limited to 2 pages for testing:
+Run the scraper to get ALL candidates:
 ```bash
 python scraper.py
 ```
 
-### 2. Async Scraper (async_scraper.py) 
-Fast async scraping with limited pages:
-```bash
-python async_scraper.py
-```
+## Key Features
 
-### 3. **Full All-Pages Scraper (scraper_all_pages.py)** ⭐
-**RECOMMENDED** - Scrapes ALL available pages:
-```bash
-python scraper_all_pages.py
-```
+- ✅ **Automatic page detection** - finds all available pages
+- ✅ **Concurrent processing** - 8 parallel requests  
+- ✅ **Smart error recovery** - continues despite failures
+- ✅ **Respectful rate limiting** - won't overwhelm the website
+- ✅ **Real-time progress** - see live scraping status
+- ✅ **Resume capability** - auto-saves progress
 
 ## Data Fields Extracted
 
@@ -48,32 +45,20 @@ python scraper_all_pages.py
 - about, desired_positions
 - url (profile URL)
 
-## Features of All-Pages Scraper
-
-- ✅ **Automatic page detection** - finds all available pages
-- ✅ **Progress auto-save** every 5 pages
-- ✅ **Graceful interruption** - Ctrl+C saves progress
-- ✅ **Concurrent processing** - 8 parallel requests
-- ✅ **Smart rate limiting** - respectful to the website
-- ✅ **Error recovery** - continues despite individual failures
-
 ## Output
 
-All scrapers save to CSV files:
-- `scraper.py` → `busy_az_candidates.csv`
-- `async_scraper.py` → `busy_az_candidates_async.csv` 
-- `scraper_all_pages.py` → `busy_az_all_candidates.csv`
+Creates `busy_az_candidates.csv` with all candidate data.
 
 ## Performance
 
-- **Basic**: ~2-3 candidates/minute
-- **Async**: ~10-15 candidates/minute  
-- **All-Pages**: ~15-20 candidates/minute with full error handling
+- **Speed**: ~15-20 candidates/minute
+- **Efficiency**: Processes multiple candidates simultaneously
+- **Reliability**: Handles network issues and missing profiles gracefully
 
-## Notes
+## Technical Details
 
-- Phone numbers extracted from mobile/home phone fields
-- Handles missing profiles (404 errors) gracefully
-- UTF-8 encoding preserves Azerbaijani characters
-- Respects website with appropriate delays
-- Can be interrupted and resumed safely
+- Uses aiohttp for async HTTP requests
+- BeautifulSoup for HTML parsing
+- Automatic pagination detection
+- Concurrent processing with semaphore limiting
+- UTF-8 CSV output with proper encoding
